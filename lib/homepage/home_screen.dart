@@ -208,6 +208,21 @@ Navigator.push(
               padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.width * 0.04,
               ),
+
+                     child: InkWell(
+                        
+                          onTap: (
+
+
+                          ) {
+
+                            Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => setting_screen(
+                  firstlist: [widget.firstlist[2]],
+                )));
+                          },)
               // child: Text(
               //   'Body Check',
               //   style: TextStyle(

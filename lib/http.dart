@@ -12,9 +12,9 @@ class RequestResult
 
 const PROTOCOL = "http";
 
-const DOMAIN = "172.19.134.76:8000";//uni
+//const DOMAIN = "172.19.134.76:8000";//uni
 //const DOMAIN = "192.168.1.193:8000";//nbls
-//const DOMAIN = "192.168.1.121:8000";//hom
+const DOMAIN = "192.168.1.121:8000";//hom
 
 
 Future<RequestResult> http_get(String route, [dynamic data]) async
