@@ -3,6 +3,9 @@ import 'package:community_material_icon/community_material_icon.dart';
 import 'package:gp1_med_aid/homepage/home_screen.dart';
 import 'package:gp1_med_aid/http.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:async';
+ import '../main.dart';
+
 
 class signup extends StatefulWidget {
   @override
@@ -317,15 +320,15 @@ var response = result.data['status'];}
      Navigator.push(
          context,
          MaterialPageRoute(
-          builder: (_) => home(
+          builder: (_) => MyStatefulWidget(
                           firstlist: [
-                           widget.firstlist[ 0], //name
-                           widget.firstlist[1], //email
-                           widget.firstlist[2], //password
-                           textfieldsStrings2[0], //city
-                           textfieldsStrings2[1], //town
-                           textfieldsStrings2[2], //street
-                           textfieldsStrings2[3], //phone
+                          //  widget.firstlist[ 0], //name
+                          //  widget.firstlist[1], //email
+                          //  widget.firstlist[2], //password
+                          //  textfieldsStrings2[0], //city
+                          //  textfieldsStrings2[1], //town
+                          //  textfieldsStrings2[2], //street
+                          //  textfieldsStrings2[3], //phone
                                                     ],
 
           )));

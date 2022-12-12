@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
+  awesome_notifications:
+    dependency: "direct main"
+    description:
+      name: awesome_notifications
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.21"
   boolean_selector:
     dependency: transitive
     description:
@@ -36,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  bubble:
+    dependency: "direct main"
+    description:
+      name: bubble
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
   characters:
     dependency: transitive
     description:
@@ -99,6 +113,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  dialogflow_flutter:
+    dependency: "direct main"
+    description:
+      name: dialogflow_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   emoji_picker_flutter:
     dependency: transitive
     description:
@@ -132,6 +153,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_image_slideshow:
+    dependency: "direct main"
+    description:
+      name: flutter_image_slideshow
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -160,6 +188,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.0"
+  flutter_rating_bar:
+    dependency: "direct main"
+    description:
+      name: flutter_rating_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   flutter_svg:
     dependency: transitive
     description:
@@ -191,6 +226,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.3"
+  googleapis_auth:
+    dependency: transitive
+    description:
+      name: googleapis_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.1"
   grouped_list:
     dependency: transitive
     description:
@@ -450,6 +492,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  simple_animations:
+    dependency: "direct main"
+    description:
+      name: simple_animations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.0+3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -504,6 +553,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.12"
+  timezone:
+    dependency: "direct main"
+    description:
+      name: timezone
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.0"
   tuple:
     dependency: transitive
     description:

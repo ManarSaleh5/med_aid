@@ -1,18 +1,65 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:community_material_icon/community_material_icon.dart';
+import 'package:flutter/services.dart';
 import 'package:gp1_med_aid/homepage/home_screen.dart';
 import 'package:gp1_med_aid/sign%20and%20log/sign_up2.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'start_screen.dart';
 import 'package:gp1_med_aid/http.dart';
-void main() => runApp(const MyApp());
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+      AwesomeNotifications().initialize(null, [
+      NotificationChannel(
+        channelKey: 'Reminder',
+        channelName: 'Reminderr',
+        channelDescription: 'Notification channel for basic tests',
+        locked: true,
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+        ledColor: Colors.white),
+
+  ],debug: true);
+
+
+ runApp(MyApp());
+}
+
+
+  //   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown
+  // ]);
+
+  // runApp(const MyApp());}
+  //   AwesomeNotifications().initialize('', [
+
+  //     NotificationChannel(
+  //       channelKey: 'Reminder',
+  //       channelName: 'Reminder',
+  //       channelDescription: 'Notification channel for basic tests',
+  //       locked: true,
+  //       importance: NotificationImportance.High,
+  //       channelShowBadge: true,
+  //       ledColor: Colors.white),
+
+  // ]);
+  //   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown
+  // ]).then((_) 
+//}
  
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
- 
+
   static const String _title = 'Med Aid';
- 
+
+    // Only after at least the action method is set, the notification events are delivered
   @override
   Widget build(BuildContext context) {
    return MaterialApp(
@@ -27,7 +74,7 @@ class MyApp extends StatelessWidget {
     );
  }
 }
- 
+
 class MyStatefulWidget extends StatefulWidget {
   //const MyStatefulWidget({Key? key}) : super(key: key);
   List firstlist;
@@ -748,4 +795,6 @@ else{
       ),
     );
   }
+  
 }
+

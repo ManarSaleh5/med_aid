@@ -89,6 +89,220 @@ app.get('/accountinfo', async (req, res, next) => {
 
   next();
 });
+app.get('/pharmciesinfo', async (req, res, next) => {
+  const text = req.url;
+  const myArray = text.split(":");
+  
+  const idd = myArray[1];
+ 
+ 
+  const [rows] = await db.query("SELECT `name` FROM `pharmacies`" );
+  //const [rows] = await db.query("show columns FROM `pharmacies in med_aid`" );
+
+  var str = JSON.stringify(rows);
+console.log(str);
+  const myArr = str.split(":");
+ // console.log(myArr);
+  //console.log(myArr[1]);
+   const p1 = myArr[1].split("\"");
+   // console.log(p1);
+    // const p11=p1[1];
+    // console.log(p11);
+
+    const p2 = myArr[2].split("\"");
+    const p3 = myArr[3].split("\"");
+   
+  let t = p1[1] + "&" + p2[1] + "&" + p3[1] ;
+
+  let result = t.replaceAll("\"", "");
+
+  res.json(result);
+
+  next();
+});
+app.get('/pharmcyid', async (req, res, next) => {
+  const text = req.url;
+  const myArray = text.split(":");
+  const pname = myArray[1];
+  const pname1 = myArray[1].split("%22");
+  const name1=pname1[1];
+  let t=name1.replaceAll("%20"," ")
+ 
+  const [rows] = 
+
+     await db.query("SELECT `id` FROM `pharmacies` WHERE `name` = (?);", [t]);
+   
+     var str = JSON.stringify(rows);
+     console.log(str);
+     const p2 = str.split(":");
+     const p3 = p2[1].split("}");
+     console.log(p3[0]);
+   
+   
+
+
+  res.json(p3[0]);
+
+  next();
+});
+app.get('/showdrugs', async (req, res, next) => {
+  const text = req.url;
+  const myArray = text.split("%22");
+  const idd = myArray[3];
+  const name1=myArray[7]; 
+  const [rows] = await db.query("SELECT * FROM `drugs` WHERE `category` = (?)and `pharmacy_id`= (?);", [name1,idd] );
+  //const [rows] = await db.query("show columns FROM `pharmacies in med_aid`" );
+  let t ="";
+  if(rows.length>0){
+    var len = rows.length
+   
+    for (let i = 0; i < len; i++) {
+      var str = JSON.stringify(rows[i]);
+      console.log(str);
+      const p1 = str.split(":");
+   console.log(p1);
+      const p11=p1[2];
+   console.log(p11);
+   
+     const p2 = p11.split("\"");
+     console.log(p2);
+  //   const p3 = myArr[3].split("\"");
+     t =  t+p2[1] + "&" ;
+    }
+   
+    res.json(t);
+  }
+  else{  
+
+    res.json("not found");}
+ // res.json("kkk");
+  next();
+});
+app.get('/showdescription', async (req, res, next) => {
+  const text = req.url;
+  const myArray = text.split("%22");
+  console.log(text);
+  const namedrug = myArray[3];
+  const [rows] = await db.query("SELECT `description` FROM `drugs` WHERE `name` = (?);", [namedrug] );
+  let t ="";
+  if(rows.length>0){
+    var len = rows.length
+   
+    for (let i = 0; i < len; i++) {
+      var str = JSON.stringify(rows[i]);
+      console.log(str);
+      const p1 = str.split(":");
+   console.log(p1);
+    const p2 = p1[1].split("\"");
+     t = p2[1]  ;
+    }
+    res.json(t);
+  }
+  else{  
+
+    res.json("not found");}
+  next();
+});
+app.get('/showprice', async (req, res, next) => {
+  const text = req.url;
+  const myArray = text.split("%22");
+  console.log(text);
+  const namedrug = myArray[3];
+  const [rows] = await db.query("SELECT `price` FROM `drugs` WHERE `name` = (?);", [namedrug] );
+  let t ="";
+  if(rows.length>0){
+    var len = rows.length
+      var str = JSON.stringify(rows);
+      console.log(str);
+      const p1 = str.split(":");
+   console.log(p1);
+    const p2 = p1[1].split("}");
+     t = p2[0]  ;
+ 
+    res.json(t);
+  }
+  else{  
+
+    res.json("not found");}
+  next();
+});
+app.get('/showtype', async (req, res, next) => {
+  const text = req.url;
+  const myArray = text.split("%22");
+  console.log(text);
+  const namedrug = myArray[3];
+  const [rows] = await db.query("SELECT `type` FROM `drugs` WHERE `name` = (?);", [namedrug] );
+  let t ="";
+  if(rows.length>0){
+    var len = rows.length
+      var str = JSON.stringify(rows);
+      console.log(str);
+      const p1 = str.split(":");
+   console.log(p1);
+    const p2 = p1[1].split("}");
+    const p3=p2[0].split("\"")
+     t = p3[1]  ;
+ 
+    res.json(t);
+  }
+  else{  
+
+    res.json("not found");}
+  next();
+});
+
+app.get('/getdrug', async (req, res, next) => {
+  const text = req.url;
+  const myArray = text.split("%22");
+  const name1 = myArray[3];
+  let id_d="";  let t ="";
+  const [rows2] = await db.query("SELECT `pharmacy_id` FROM `drugs` WHERE `name` = (?);", [name1] );
+  if(rows2.length>0){
+    var len = rows2.length;
+     for (let i = 0; i < len; i++) {
+      var str1 = JSON.stringify(rows2);
+      const a=str1.split(",");
+     
+        const p2 = a[i].split(":");
+        const p3 = p2[1].split("}");
+        console.log(p3[0]);
+         id_d=p3[0];
+       const [rows] = await db.query("SELECT `name` FROM `pharmacies` WHERE `id` = (?);", [id_d]);
+       var str = JSON.stringify(rows[0]);
+       console.log(str);
+       const p1 = str.split(":");
+       console.log(p1);
+       const p11=p1[1];
+      console.log(p11);
+      const p22= p11.split("\"");
+      console.log(p22);
+      t =  t+p22[1] + "&" ;
+    }}
+   
+    else t="not";
+    console.log(t);
+
+    res.json(t);
+  
+    next();
+});
+app.get('/fridayshift', async (req, res, next) => {
+  const text = req.url;
+  const myArray = text.split("%22");
+  console.log(text);
+  const friday = 1;
+ const name1=myArray[7]; 
+  const [rows] = await db.query("SELECT `name` FROM `pharmacies` WHERE `friday` = (?);", [friday] );
+  var str = JSON.stringify(rows);
+console.log(str);
+   const myArr = str.split(":");
+   const t=myArr[1];
+   let result = t.replaceAll("\"", "");
+let r2=result.replaceAll("}","");
+let r3=r2.replaceAll("]","");
+  res.json(r3);
+  next();
+});
 
 app.post('/change-account', async (req, res, next) => {
   const id = req.body.id;

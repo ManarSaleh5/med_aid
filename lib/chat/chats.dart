@@ -1,150 +1,221 @@
-
-//import 'dart:html';
-
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-class ChatDetailPage extends StatefulWidget{
-  @override
-   List firstlist;
-  ChatDetailPage({Key? key, required this.firstlist}) : super(key: key);
-  _ChatDetailPageState createState() => _ChatDetailPageState();
-}
-List textm = [
-    "", //city
-    "", //town 
-    "", //street
-    "", //phone 
-  
-  ];
- String title=" ";
-    String text = " ";
-class _ChatDetailPageState extends State<ChatDetailPage> {
-     void _setText() {
-    setState(() {
-      text = title;
-    });
-  }
-  @override
-  Widget build(BuildContext context) {
-
-   return Scaffold(
-     
-      appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        backgroundColor:  Color(0xFF91c4aa),
-        flexibleSpace: SafeArea(
-          child: Container(
-            padding: EdgeInsets.only(right: 18),
-            child: Row(
-              children: <Widget>[
-                IconButton(
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.arrow_back,color: Colors.black,),
-                ),
-                SizedBox(width: 2,),
-                CircleAvatar(
-                  
-                   backgroundImage:AssetImage("assets/images/chat.png"),
-                           backgroundColor: Colors.transparent,
-                  maxRadius: 57,
-                ),
-                SizedBox(width: 15,),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text("Pharmacist",style: TextStyle( fontSize: 22 ,fontWeight: FontWeight.w600),),
-                      SizedBox(height: 6,),
-                     // Text("Online",style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
-                    ],
-                  ),
-                ),
-               // Icon(Icons.settings,color: Colors.black54,),
-              ],
-            ),
-          ),
-        ),
-      ),
-       
-      //body: Container()
-      body: 
-     Stack(
-      
-        children: <Widget>[
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-          
-              padding: EdgeInsets.only(left: 10,bottom: 10,top: 10),
-              height: 60,
-              width: double.infinity,
-              color: Colors.white,
-             
-              child: Row(
-                children: <Widget>[
-                 Expanded(
-                     child: Form(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Write message...",
-                        hintStyle: TextStyle(color: Colors.black54),
-                        border: OutlineInputBorder(),
-                       
-            
-                      ),
-                      onChanged: (value) => title = value,
-                     )),
-                 ),
-                   FloatingActionButton(
-                    onPressed: (){
-                     
+// import 'package:bubble/bubble.dart';
+// import 'package:dialogflow_flutter/googleAuth.dart';
+// import 'package:flutter/material.dart';
+// import 'package:dialogflow_flutter/dialogflowFlutter.dart';
 
 
-                    },
-                    
-                    
-                    child:
-                                        IconButton(
-                      icon: Icon( Icons.send, size: 18,),
-                   onPressed: (){  
-                     text = title;
-    },
-      
-    ),
-                    
-                    
-                  
-                    
-                    // Icon(Icons.send,color: Colors.white,size: 18,),
-                    backgroundColor: Color.fromARGB(255, 70, 143, 88),
-                    elevation: 0,
-                  ),
-                
-               
-                  SizedBox(width: 15,),
-                
-                 
-                ],
-                
-              ),
-            ),
-          ),
-          Text(text,  textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                color: Color.fromARGB(255, 42, 94, 68),
-                fontSize: 20,))
-         
-        ],
-        
-   
-      ),
-     
-    );
-   
-  
-  }
-}
+
+
+
+
+
+// class ChatDetailPage1 extends StatefulWidget {
+//  List firstlist;
+//   ChatDetailPage1({Key? key, required this.firstlist}) : super(key: key);
+//   _ChatDetailPageState1 createState() => _ChatDetailPageState1();
+
+
+// }
+
+// class _ChatDetailPageState1 extends State<ChatDetailPage1 > {
+//   void response(query) async {
+//     AuthGoogle authGoogle = await AuthGoogle(
+//         fileJson: "assets/med-aid-chat-nyyh-017864bd301a.json")
+//         .build();
+//     DialogFlow dialogflow =
+//     DialogFlow(authGoogle: authGoogle, language: "en");
+//     AIResponse aiResponse = await dialogflow.detectIntent(query);
+//     setState(() {
+//       messsages.insert(0, {
+//         "data": 0,
+//         "message": aiResponse.getListMessage()[0]["text"]["text"][0].toString()
+//       });
+//     });
+
+
+//     print(aiResponse.getListMessage()[0]["text"]["text"][0].toString());
+//    }
+
+//   final messageInsert = TextEditingController();
+//     List<Map<String, dynamic>> messsages = List as List<Map<String, dynamic>>;
+//   //List.asMap(messsages );
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(
+//           "Chat bot",
+//         ),
+//       ),
+//       body: Container(
+//         child: Column(
+//           children: <Widget>[
+//             Container(
+//               padding: EdgeInsets.only(top: 15, bottom: 10),
+//              // child: Text("Today, ${DateFormat("Hm").format(DateTime.now())}", style: TextStyle(
+//                 //fontSize: 20
+//             //  ),),
+//             ),
+//             Flexible(
+//                 child: ListView.builder(
+//                     reverse: true,
+//                     itemCount: messsages.length,
+//                     itemBuilder: (context, index) => chat(
+//                         messsages[index]["message"].toString(),
+//                         messsages[index]["data"]))),
+//             SizedBox(
+//               height: 20,
+//             ),
+
+//             Divider(
+//               height: 5.0,
+//               color: Colors.greenAccent,
+//             ),
+//             Container(
+
+
+//               child: ListTile(
+
+//                   //leading:IconButton(
+//                    // icon: Icon(Icons.camera_alt, color: Colors.greenAccent, size: 35,),
+//                   //),
+
+//                   title: Container(
+//                     height: 35,
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.all(Radius.circular(
+//                           15)),
+//                       color: Color.fromRGBO(220, 220, 220, 1),
+//                     ),
+//                     padding: EdgeInsets.only(left: 15),
+//                     child: TextFormField(
+//                       controller: messageInsert,
+//                       decoration: InputDecoration(
+//                         hintText: "Enter a Message...",
+//                         hintStyle: TextStyle(
+//                             color: Colors.black26
+//                         ),
+//                         border: InputBorder.none,
+//                         focusedBorder: InputBorder.none,
+//                         enabledBorder: InputBorder.none,
+//                         errorBorder: InputBorder.none,
+//                         disabledBorder: InputBorder.none,
+//                       ),
+
+//                       style: TextStyle(
+//                           fontSize: 16,
+//                           color: Colors.black
+//                       ),
+//                       onChanged: (value) {
+
+//                       },
+//                     ),
+//                   ),
+
+//                   trailing: IconButton(
+
+//                       icon: Icon(
+
+//                         Icons.send,
+//                         size: 30.0,
+//                         color: Colors.greenAccent,
+//                       ),
+//                       onPressed: () {
+
+//                         if (messageInsert.text.isEmpty) {
+//                           print("empty message");
+//                         } else {
+//                           setState(() {
+//                             messsages.insert(0,
+//                                 {"data": 1, "message": messageInsert.text});
+//                           });
+//                           response(messageInsert.text);
+//                           messageInsert.clear();
+//                         }
+//                         FocusScopeNode currentFocus = FocusScope.of(context);
+//                         if (!currentFocus.hasPrimaryFocus) {
+//                           currentFocus.unfocus();
+//                         }
+//                       }),
+
+//               ),
+
+//             ),
+
+//             SizedBox(
+//               height: 15.0,
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+
+//   //for better one i have use the bubble package check out the pubspec.yaml
+
+//   Widget chat(String message, int data) {
+//     return Container(
+//       padding: EdgeInsets.only(left: 20, right: 20),
+
+//       child: Row(
+//           mainAxisAlignment: data == 1 ? MainAxisAlignment.end : MainAxisAlignment.start,
+//           children: [
+
+//             data == 0 ? Container(
+//               height: 60,
+//               width: 60,
+//               child: CircleAvatar(
+//                 backgroundImage: AssetImage("assets/robot.jpg"),
+//               ),
+//             ) : Container(),
+
+//         Padding(
+//         padding: EdgeInsets.all(10.0),
+//         child: Bubble(
+//             radius: Radius.circular(15.0),
+//             color: data == 0 ? Color.fromRGBO(23, 157, 139, 1) : Colors.orangeAccent,
+//             elevation: 0.0,
+
+//             child: Padding(
+//               padding: EdgeInsets.all(2.0),
+//               child: Row(
+//                 mainAxisSize: MainAxisSize.min,
+//                 children: <Widget>[
+
+//                   SizedBox(
+//                     width: 10.0,
+//                   ),
+//                   Flexible(
+//                       child: Container(
+//                         constraints: BoxConstraints( maxWidth: 200),
+//                         child: Text(
+//                           message,
+//                           style: TextStyle(
+//                               color: Colors.white, fontWeight: FontWeight.bold),
+//                         ),
+//                       ))
+//                 ],
+//               ),
+//             )),
+//       ),
+
+
+//             data == 1? Container(
+//               height: 60,
+//               width: 60,
+//               child: CircleAvatar(
+//                 backgroundImage: AssetImage("assets/images/usr-removebg-preview.png"),
+//               ),
+//             ) : Container(),
+
+//           ],
+//         ),
+//     );
+//   }
+//   @override
+//   // void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+//   //   super.debugFillProperties(properties);
+//   //   properties.add(IterableProperty<Map<String, dynamic>>('List', List));
+//   // }
+// }
