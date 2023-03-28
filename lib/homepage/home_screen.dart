@@ -5,14 +5,16 @@ import 'package:gp1_med_aid/settings/setting%20.dart';
 import 'dart:developer';
 //import 'package:gp1_med_aid/chat/chats.dart';
 import 'package:gp1_med_aid/chat/chatai.dart';
- import 'package:gp1_med_aid/pharmacy/pharmacy1.dart';
- import 'package:google_fonts/google_fonts.dart';
+import 'package:gp1_med_aid/pharmacy/pharmacy1.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import '../http.dart';
 import '../reminder/notification.dart';
 import '../reminder/reminder1.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import '../search.dart';
-
+List<String>time1=[];
+//String time1="";
 class home extends StatefulWidget {
   @override
   List firstlist;
@@ -25,13 +27,37 @@ class home extends StatefulWidget {
 List<int> ind = [
   0,1,2
 ];
+
+List<String> timeree=[];
+String adsimage="";
+List<String>addss=[];
+var time1e=[];
 List<String> myinfo = [];
+List<String> addsinfo= [];
+String timer="";
+List<String> r=["Reminder","Reminder1","Reminder2","Reminder3","Reminder4"];
+//List<String> timer = [];
+//var timer = [];
+List<String>timer1 = [];
+List<String>timer2= [];
+//var timer2= [];
+//List<String> timer3= [];
+String timer3="";
+List<String>timer4= [];
+String time="";
+//List<String> time = [];
 List<String> myinfo1 = [];
 int j=0;
- var sug_pharmacy1=[" "," "," ",];
+ var sug_pharmacy1=[];
   //var sug_pharmacy = ["Nour alyousef pharmacy", "IBN-SINA PHARMACY", "Rafidia Pharmacy"];
        var sug_image = [
     'assets/images/pharmacist.gif',
+     'assets/images/pharmacy2.gif',
+      'assets/images/pharma3.gif',
+        'assets/images/pharmacist.gif',
+     'assets/images/pharmacy2.gif',
+      'assets/images/pharma3.gif',
+        'assets/images/pharmacist.gif',
      'assets/images/pharmacy2.gif',
       'assets/images/pharma3.gif',
    
@@ -42,11 +68,19 @@ int j=0;
   //   super.initState();
   // }
    var images=[
-'assets/images/adds1 _.jpg',
-'assets/images/adds2.jpg',
-'assets/images/adds3.jpg'
+// 'assets/images/adds1 _.jpg',
+// 'assets/images/adds2.jpg',
+// 'assets/images/adds3.jpg'
+'assets/images/adds4.jpeg',
+'assets/images/adds5.jpeg',
+'assets/images/adds11.jpeg',
+'assets/images/adds22.jpeg',
+'assets/images/adds33.jpeg'
+
+
    ];
    String shift="";
+   
   var p=["chat","1","2"];
 class _homeSt extends State<home> {
   
@@ -58,10 +92,12 @@ int glass_size = 0;
     });
 
     myinfo = result.data.split("&");
+      for(int i=0;i<myinfo.length;i++)
+       if(myinfo[i]!="")
+
+         sug_pharmacy1.add(myinfo[i]);
+     print(myinfo);
     
-      sug_pharmacy1[0]= myinfo[0];
-      sug_pharmacy1[1]= myinfo[1];
-      sug_pharmacy1[2]= myinfo[2];
     
     setState(() {});
   }
@@ -73,24 +109,83 @@ int glass_size = 0;
     myinfo = result.data.split("&");
     
       shift= myinfo[0];
-      // sug_pharmacy1[1]= myinfo[1];
-      // sug_pharmacy1[2]= myinfo[2];
     
     setState(() {});
   }
-  //debugPrint("");
- void initState() {
-   DateTime date = DateTime.now();
+  show_timee() async {
+      var result = await http_get("get_timere", {
+      "id": widget.firstlist[2],
+    });
 
-     create_notification("12:37",date.weekday);
+   timeree= result.data.split("&");
+   for(int i=0;i<timeree.length;i++)
+   if(timeree[i]!="")
+   time1e.add(timeree[i]);
+   
+    
+    setState(() {});
+  }
+  // show_location() async {
+  //     type=" ";
+  //     var result = await http_get("showlocation", {
+  //     "name": des,
+      
+  //   });
+  //   setState(() {
+  //     type= result.data;
+  //     print(type);
+
+  //   });
+  // }
+ void initState() {
+   
+  time1e=[];
+   DateTime date = DateTime.now();
+ 
+
+timer= widget.firstlist[3].replaceAll("{", "");
+timer=timer.replaceAll("[", "");
+timer=timer.replaceAll("]", "");
+timer=timer.replaceAll("}", "");
+
+// timer = widget.firstlist[3].split(",");
+timer1=timer.split(",");
+ for(int i=0;i<timer1.length;i++){
+
+timer2=timer1[i].split("\"");
+//timer2[i]=timer1.toString();
+
+timer3=timer2[3];
+timer4.add(timer3);
+
+ 
+ }
+addss= widget.firstlist[4].split("&");
+print(addss);
+ show_timee();
+ print("time mod");
+ print(time1e);
+ for(int i=0;i<timer4.length;i++){
+  notify.create_notification(timer4[i],date.weekday,i,r[i]);
+//  notify.create_notification(time1e[i],date.weekday,i);
+ }
+ 
+     //notify.create_notification("22:36",date.weekday);
+        
+
      show_pharmciesinfo();
+
       show_pharmciesshift();
+  //      show_adds();
+  //  print(adsimage);
     super.initState();
   }
 
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+        
+
   Size size = MediaQuery.of(context).size;
     
 
@@ -112,7 +207,8 @@ Navigator.push(
         context,
         MaterialPageRoute(
             builder: (_) => search_2_screen(
-                  firstlist: [widget.firstlist[2]],
+                  firstlist: [widget.firstlist[2],
+               ],
                 )));
     },
       
@@ -140,7 +236,11 @@ Navigator.push(
         context,
         MaterialPageRoute(
             builder: (_) => AddNewMedicine(
-                 
+                   firstlist: [widget.firstlist[2],
+                    timer4.toString(),
+                   ],
+                             
+
                 )));
     },
       
@@ -332,7 +432,7 @@ Navigator.push(
             Padding(
               padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
               child: Text(
-                'Suggested Pharmacy ',
+                'Suggested Pharmacies ',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: MediaQuery.of(context).size.width * 0.045,
@@ -347,8 +447,8 @@ Navigator.push(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: <Widget>[
-                    //  for (int ii = 0; ii < 3; ii++)
-                        for (int i in ind) add_sug_pharmacy(context, size , i,j),
+                     for (int ii = 0; ii <sug_pharmacy1.length; ii++)
+                         add_sug_pharmacy(context, size , ii,j),
                           
                          
 
@@ -389,13 +489,13 @@ Navigator.push(
         
         );
         
-  }}
- 
- 
-  Widget add_sug_pharmacy(BuildContext context, Size size, int i,int j) {
+  }
+   Widget add_sug_pharmacy(BuildContext context, Size size, int i,int j) {
     
     return   InkWell(
         onTap: () {
+
+
                     // callpage(i,context);
           //showAlertDialog(context, sug[i]);
         },
@@ -471,7 +571,7 @@ Navigator.push(
         MaterialPageRoute(
             builder: (_) => ListViewPage(
                   name: sug_pharmacy1[i],
-                  
+                  id:widget.firstlist[2],
                 )));
     },
       
@@ -489,21 +589,30 @@ Navigator.push(
             )));
             
   }
- Widget ad_slides(BuildContext context) {
+   Widget ad_slides(BuildContext context) {
     return ImageSlideshow(
       width: double.infinity,
       initialPage: 0,
       indicatorColor: Color(0xff132137),
       indicatorBackgroundColor: Colors.grey,
       children: [
-        for (int ii = 0; ii <images.length ; ii++)
-          for (int i in ind) Image.asset(images[ii]),
+        // for (int ii = 0; ii <images.length ; ii++)
+        //    Image.asset(images[ii]),
+       
+        for (int ii = 0; ii <addss.length-1 ; ii++)
+          Image.network(addss[ii]),
       ],
       onPageChanged: (value) {},
-      autoPlayInterval: 1000,
+      autoPlayInterval: 2000,
       isLoop: true,
     );
   }
+  }
+ 
+ 
+ 
+
+
   
 
 

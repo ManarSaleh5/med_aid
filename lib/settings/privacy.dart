@@ -49,15 +49,18 @@ class _privacy_pageState extends State<privacy_page> {
             Navigator.pop(context);
           },
         ),
-        title: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.4,
-          height: MediaQuery.of(context).size.height * 0.07,
-          child: Image.asset(
-            'assets/images/logo4-removebg-preview.png',
-            fit: BoxFit.cover,
-          ),
+        title: Container(
+          alignment: Alignment.center,
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.60,
+            height: MediaQuery.of(context).size.height * 0.07,
+            child: Image.asset(
+              'assets/images/logoo1-removebg-preview.png',
+              fit: BoxFit.cover,
+            ),
 
-          //
+            //
+          ),
         ),
       ),
       body: Container(
@@ -86,7 +89,7 @@ class _privacy_pageState extends State<privacy_page> {
               ),
             ),
             Text(
-              "Two-factor authentication is a better way to secure your account . if you enabled it, you'll be asked to enter a verification code sent to your e-mail.",
+              "this application have a privacy and all information is secure",
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 color: Color.fromARGB(255, 42, 94, 68),
@@ -119,7 +122,7 @@ class _privacy_pageState extends State<privacy_page> {
               ),
             ),
             Text(
-              "Two-factor authentication is ${isstate.state ? "On" : "Off"}",
+              " ${isstate.state ? "On" : "Off"}",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Color.fromARGB(255, 42, 94, 68),

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gp1_med_aid/reminder/timers.dart';
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 
@@ -10,6 +11,8 @@ import 'package:intl/intl.dart';
 
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+
+import '../http.dart';
 final _timePickerTheme = TimePickerThemeData(
   backgroundColor: Colors.white,
   hourMinuteShape: const RoundedRectangleBorder(
@@ -59,15 +62,31 @@ final _timePickerTheme = TimePickerThemeData(
   ];
   
 
+ String name="";
+ String amount="";
 class AddNewMedicine extends StatefulWidget {
   @override
+  List firstlist;
+   AddNewMedicine({Key? key, required this.firstlist}) : super(key: key);
   _AddNewMedicineState createState() => _AddNewMedicineState();
 }
 
 class _AddNewMedicineState extends State<AddNewMedicine> {
  // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   TimeOfDay _timeOfDay = TimeOfDay(hour: 8, minute: 30);
-
+createreminder() async {
+var result = await http_post("create-reminder", {
+      "id":widget.firstlist[0],
+      "name": name,
+      "amount": amount,
+      "time":  _timeOfDay.format(context).toString(),
+    
+    
+    });
+      if (result.ok) {
+var response = result.data['status'];}
+ print(result.data['status'].toString());
+ }
   // show time picker method
   void _showTimePicker() {
     showTimePicker(
@@ -115,6 +134,9 @@ class _AddNewMedicineState extends State<AddNewMedicine> {
 
   @override
   Widget build(BuildContext context) {
+    print("rem");
+    print(widget.firstlist[1]);
+    
       Size size = MediaQuery.of(context).size;
     final deviceHeight = MediaQuery.of(context).size.height - 60.0;
 final focus = FocusScope.of(context);
@@ -207,7 +229,12 @@ final focus = FocusScope.of(context);
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide:
                       BorderSide(width: 0.5, color: Color.fromARGB(255, 33, 87, 49)))),
-              onSubmitted: (val)=>focus.nextFocus(),
+                       onChanged: (value) {
+              setState(() {
+                name = value;
+              });
+            },
+              onSubmitted: (val)=>nameController.text,//.nextFocus(),
             ),
           ),   
              SizedBox(
@@ -236,7 +263,12 @@ final focus = FocusScope.of(context);
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide(
                                 width: 0.5, color: Color.fromARGB(255, 33, 87, 49)))),
-                    onSubmitted: (val)=>focus.unfocus(),
+                                          onChanged: (value) {
+              setState(() {
+                amount = value;
+              });
+            },
+                    onSubmitted: (val)=>amountController.text,//.unfocus(),
                   ),
                 ),
               ),
@@ -317,7 +349,7 @@ final focus = FocusScope.of(context);
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                      Text(
-              _timeOfDay.format(context).toString(),
+              _timeOfDay.format(context).toString()+" ",
               style: TextStyle(fontSize: 40,color:Color.fromARGB(255, 35, 88, 68), ),
             ),
                  MaterialButton(
@@ -343,11 +375,16 @@ final focus = FocusScope.of(context);
               ),
               Spacer(),
               Container(
-
-
-                  child:         MaterialButton(
+                //width: 
+                height: 70,
+                width:double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+          
+             MaterialButton(
            
-              onPressed: _showTimePicker,
+              onPressed:(){ createreminder();},
               child: const Padding(
                 padding: EdgeInsets.all(7.0),
                 child: Text('DONE',
@@ -355,37 +392,43 @@ final focus = FocusScope.of(context);
               ),
               color: Color.fromARGB(255, 38, 83, 70),
             ),
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  // Text(
-                  //   "Done",
-                  //   style: TextStyle(
-                  //       color: Color.fromARGB(255, 153, 60, 60),
-                  //       fontWeight: FontWeight.w600,
-                  //       fontSize: 17.0),
-                  // ),
-              )
-              // Container(
-              //   height: 10,
-              //   width: double.infinity,
-              //   child: 
-                  
-            
-              //      Text(
-              //       "Done",
-              //       style: TextStyle(
-              //           color: Color.fromARGB(255, 153, 60, 60),
-              //           fontWeight: FontWeight.w600,
-              //           fontSize: 17.0),
-              //     ),
+                      Text(
+                    "    see your timers ",
+                    textAlign: TextAlign.right,
+                   
+                    style: TextStyle(
+                      
+                        color:  Color.fromARGB(255, 38, 83, 70),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 24.0),
+                  ),
+                                     IconButton(
+                      icon: Icon( Icons.arrow_circle_right_outlined, size: 37,color:Color.fromARGB(255, 38, 83, 70) ,),
+                   onPressed: (){  
+Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) =>timer_page(
+                  firstlist: [widget.firstlist[1],
+                              widget.firstlist[0],
+                              _timeOfDay.format(context).toString(),
+
+                  ],
+                )));
+    },
+      
+    ),
+                    // SizedBox(
+                    //   width: 40,
+                    // ),
+                   
+                  ],
                 
-              // )
+                ),
+                 
+               
+              ),
+
             ],
           ),
         ),

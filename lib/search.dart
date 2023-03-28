@@ -5,13 +5,18 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:gp1_med_aid/settings/setting%20.dart';
 import 'dart:developer';
 //import 'package:gp1_med_aid/chat/chats.dart';
-import 'package:gp1_med_aid/chat/chatai.dart';
- import 'package:gp1_med_aid/pharmacy/pharmacy1.dart';
- import 'package:google_fonts/google_fonts.dart';
+//import 'package:gp1_med_aid/chat/chatai.dart';
+import 'package:gp1_med_aid/pharmacy/pharmacy1.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:gp1_med_aid/map1.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import '../http.dart';
+import 'package:gp1_med_aid/homepage/home_screen.dart';
 String id = "";
-
+ bool e=false;
+bool n=false;
+bool ib=false;
+bool r=false;
 class search_2_screen extends StatefulWidget {
   List firstlist;
   search_2_screen({Key? key, this.animationController, required this.firstlist})
@@ -45,15 +50,18 @@ class _search_2_screenState extends State<search_2_screen> {
     }
       @override
   void initState() {
-  
-
+  n=false;
+ib=false;
+e=false;
+r=false;
     super.initState();
   }
 
   Widget build(BuildContext context) {
+    n=false;
+    ib=false;
+    r=false;
     Size size = MediaQuery.of(context).size;
-  
-    id = widget.firstlist[0];
     return Scaffold(
       backgroundColor: Color(0xFF91c4aa),
       resizeToAvoidBottomInset: false,
@@ -72,7 +80,19 @@ class _search_2_screenState extends State<search_2_screen> {
               color: Color.fromARGB(255, 32, 88, 65),
             ),
             onPressed: () {
+              // Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (_) => home(
+              //                firstlist: [
+              //             widget.firstlist[1],
+              //             widget.firstlist[2],
+              //             widget.firstlist[0],
+              //             widget.firstlist[3],
+              //                    ],
+              //                 )));
               Navigator.pop(context);
+              
             },
           ),
        title: Container(
@@ -130,16 +150,13 @@ width: 100,
     ),
             TextField(
                     controller: _controller,
-                    //editing controller of this TextField
                     decoration: InputDecoration(
-                                     filled: true, //<-- SEE HERE
+                                     filled: true, 
     fillColor: Colors.white,                           
-                        //icon of text field  
-                        //labelText: "Enter name of drug " //label text of field
+                       
                         ),
                         
                     readOnly: false,
-                    //set it true, so that user will not able to edit text
                     onTap: () async {
                          
                         setState(() {
@@ -151,7 +168,6 @@ width: 100,
                       icon: Icon( Icons.search, size: 50,color: Colors.white),
                    onPressed: (){
                         getdrug();
-                      //  print(_controller.text);
     },
       
     ),
@@ -168,15 +184,64 @@ width: 100,
                 
                 children: <Widget>[
                   if (!pharmacy.isEmpty)
-                    for (int i=0;i<pharmacy.length ;i++)  add_search_pharmacy(context, size , i),
+                    for (int i=0;i<pharmacy.length-1 ;i++)  add_search_pharmacy(context, size , i),
+                    //if(pharmacy.isEmpty)e=0,
+                   
              
                 ],
+              
               ),
-            )
+            ),
+            Container(
+              height:30,
+            ),
+               Container(
+height: 40,
+
+  child: Text(
+                    "Use map to get the closest pharmacy",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 35, 88, 68),
+                        fontSize: size.width * 0.05,
+                        fontWeight: FontWeight.w500),
+                  ),
+
+    ),
+    Container(
+                                      child: IconButton(
+                      icon: Icon( Icons.location_on, size: 37,color:Color.fromARGB(255, 38, 83, 70) ,),
+                   onPressed: (){  
+                       if (!pharmacy.isEmpty){
+                for (int i=0;i<pharmacy.length ;i++){
+                    if(pharmacy[i].toString()=="Nour alyousef pharmacy")n=true;
+                    if(pharmacy[i].toString()=="IBN-SINA PHARMACY")ib=true;
+                    if(pharmacy[i].toString()=="Rafidia Pharmacy")r=true;
+                     
+                     }
+                     }
+Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) =>map_page(
+                  firstlist: [e,
+                  n,ib,r,
+                  // widget.firstlist[0],
+                  // widget.firstlist[1],
+                  // widget.firstlist[2],
+                  // widget.firstlist[3],
+                  ] ,
+                )));
+    },
+      
+    ),
+    )
           ],
+          
         ),
+        
       ),
     );
+    
   }
  
     Widget add_search_pharmacy(BuildContext context, Size size, int i) {
@@ -203,7 +268,7 @@ width: 100,
             
        
                   width: size.width * 0.4,
-                  height: size.height * 0.3,
+                  height: size.height * 0.35,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: const BorderRadius.only(

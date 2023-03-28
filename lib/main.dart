@@ -18,12 +18,48 @@ Future<void> main() async {
         channelKey: 'Reminder',
         channelName: 'Reminderr',
         channelDescription: 'Notification channel for basic tests',
-        locked: true,
         importance: NotificationImportance.High,
         channelShowBadge: true,
         ledColor: Colors.white),
+         NotificationChannel(
+        channelKey: 'Reminder1',
+        channelName: 'Reminderr1',
+        channelDescription: 'Notification channel for basic tests',
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+        ledColor: Colors.white),
+         NotificationChannel(
+        channelKey: 'Reminder2',
+        channelName: 'Reminderr2',
+        channelDescription: 'Notification channel for basic tests',
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+        ledColor: Colors.white),
+         NotificationChannel(
+        channelKey: 'Reminder3',
+        channelName: 'Reminderr3',
+        channelDescription: 'Notification channel for basic tests',
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+        ledColor: Colors.white),
+         NotificationChannel(
+        channelKey: 'Reminder4',
+        channelName: 'Reminderr4',
+        channelDescription: 'Notification channel for basic tests',
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+        ledColor: Colors.white),
+          NotificationChannel(
+        channelKey: 'Reminder5',
+        channelName: 'Reminderr5',
+        channelDescription: 'Notification channel for basic tests',
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+        ledColor: Colors.white),
+         
 
-  ],debug: true);
+  ],
+   debug: true);
 
 
  runApp(MyApp());
@@ -129,6 +165,7 @@ var result = await http_get("userlog", {
     
     });
     print(result.data);
+
       if (result.data=="email or password are not correct") {
                buildSnackError(
                               'email or password are not correct ',
@@ -144,7 +181,22 @@ var result = await http_get("userlog", {
 
 }
 else{    
-  print(result.data);
+
+   var res = await http_get("get_time", {
+      "id": result.data,
+    });
+//for(int i=0;i<time.length;i++){
+   time=res.data;
+      var result1 = await http_get("adds", {
+      
+    });
+    adsimage=result1.data;
+   
+    
+     print("jjjj");
+    
+ 
+
                 Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -154,6 +206,8 @@ else{
                                   textfieldsStrings1[0],
                                   textfieldsStrings1[1],
                                   result.data,
+                                  time,
+                                  adsimage,
                                   
                                 //   textfieldsStrings[2],
                                 //  // hashvalue.toString(),
@@ -319,16 +373,16 @@ else{
             left: 0,
             child: Column(
               children: [
-                Text(isSignupScreen ? "Or Signup with" : "Or Signin with"),
+                //Text(isSignupScreen ? "Or Signup with" : "Or Signin with"),
                 Container(
                   margin: EdgeInsets.only(right: 20, left: 20, top: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                      children: [
-                       buildTextButton(CommunityMaterialIcons.facebook,
-                           "Facebook", Color.fromARGB(255, 109, 132, 182)),
-                       buildTextButton(CommunityMaterialIcons.google_plus,
-                           "Google", Color.fromARGB(255, 216, 98, 83)),
+                      //  buildTextButton(CommunityMaterialIcons.facebook,
+                      //      "Facebook", Color.fromARGB(255, 109, 132, 182)),
+                      //  buildTextButton(CommunityMaterialIcons.google_plus,
+                      //      "Google", Color.fromARGB(255, 216, 98, 83)),
                      ],
                   ),
                 )
@@ -351,28 +405,28 @@ else{
               CommunityMaterialIcons.lock_outline, "**********", true, false,1),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Checkbox(
-                    value: isRememberMe,
-                    activeColor: Palette.textColor2,
-                    onChanged: (value) {
-                      setState(() {
-                        isRememberMe = !isRememberMe;
-                      });
-                    },
-                  ),
-                  Text("Remember me",
-                      style: TextStyle(fontSize: 15, color: Palette.textColor1))
-                ],
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text("Forgot Password?",
-                    style: TextStyle(fontSize: 15, color: Palette.textColor1)),
-              )
-            ],
+            // children: [
+            //   Row(
+            //     children: [
+            //       Checkbox(
+            //         value: isRememberMe,
+            //         activeColor: Palette.textColor2,
+            //         onChanged: (value) {
+            //           setState(() {
+            //             isRememberMe = !isRememberMe;
+            //           });
+            //         },
+            //       ),
+            //       Text("Remember me",
+            //           style: TextStyle(fontSize: 15, color: Palette.textColor1))
+            //     ],
+            //   ),
+            //   TextButton(
+            //     onPressed: () {},
+            //     child: Text("Forgot Password?",
+            //         style: TextStyle(fontSize: 15, color: Palette.textColor1)),
+            //   )
+            // ],
           )
         ],
       ),

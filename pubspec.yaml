@@ -49,9 +49,14 @@ dependencies:
   # flutter_dialogflow: ^0.1.3
   dialogflow_flutter: ^0.0.3
   http: 0.13.4
-  #awesome_notifications: ^0.7.4+1
-  awesome_notifications: ^0.6.21
-
+  awesome_notifications: ^0.7.4+1
+  google_maps_flutter: ^2.2.1
+  google_maps_flutter_platform_interface: ^2.2.1
+  location: ^4.2.0
+  geolocator: ^9.0.2
+  geocoding: ^2.0.5
+  # awesome_notifications: ^0.6.21
+  android_alarm_manager_plus: ^2.1.0
   flutter:
     #sdk: '>=2.12.0 <3.0.0'
     sdk: flutter
@@ -131,7 +136,18 @@ flutter:
     - "assets/images/syringe.png"
     - "assets/images/cream.png"
     - "assets/images/capsule.png"
-    - assets/med-aid-chat-nyyh-017864bd301a.json
+    - "assets/images/medtime.png"
+    - "assets/images/online.png"
+    - "assets/images/order.gif"
+    - "assets/images/order1.gif"
+    - "assets/images/adds4.jpeg"
+    - "assets/images/adds5.jpeg"
+    - "assets/images/adds11.jpeg"
+    - "assets/images/adds22.jpeg"
+    - "assets/images/adds33.jpeg"
+    - "assets/images/adds6.jpeg"
+    - "assets/images/adds7.jpeg"
+    - assets/med-aid-chatai-fqlv-fbba9e2defea.json
   # assets:
   #           - assets/introduction_animation/
   #           - assets/others/

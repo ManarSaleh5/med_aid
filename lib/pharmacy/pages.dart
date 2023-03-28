@@ -2,25 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:gp1_med_aid/settings/setting%20.dart';
-import 'package:gp1_med_aid/chat/chatai.dart';
+//import 'package:gp1_med_aid/chat/chatai.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../http.dart';
 
-
-class Page_n extends StatefulWidget {
-  @override
-  String name=" ";
-  String categories=" ";
-    String id;
- Page_n({Key? key, required this.name,required this.id,required this.categories}) : super(key: key);
-  _PageState createState() => _PageState();
-
-}
-
-  //var sug_use=[];
- var drug_list=[];
-class _PageState extends State<Page_n> {
-String sug_use="";
+ String sug_use="";
 List<int> ind = [
   0,1,2
 ];
@@ -31,21 +17,44 @@ String type="";
 int j=0;
 
  String des="";
+
+class Page_n extends StatefulWidget {
+  @override
+  String name=" ";
+  String categories;
+    String id=" ";
+ Page_n({Key? key, required this.name,required this.id,required this.categories}) : super(key: key);
+  _PageState createState() => _PageState();
+
+}
+
+  //var sug_use=[];
+   var drug_list=[];
+
+class _PageState extends State<Page_n> {
+
    show_drugs() async {
       var result = await http_get("showdrugs", {
       "id": widget.id,
       "name":widget.categories,
     });
-    if(result.data.toString()!="not found"){
+    //if(result.data.toString()!="not found"){
+     await setlist(result);
+    setState((){
+      // for(int i=0;i<myinfo.length;i++)
+      //  if(myinfo[i]!="")
+      //  drug_list.add(myinfo[i]);
+    //  print(drug_list);
+   
+    });
+     print(drug_list);
+   
+  }
 
- 
-    myinfo = result.data.split("&");
-     for(int i=0;i<myinfo.length;i++)
-     if(myinfo[i]!="")
-      drug_list.add(myinfo[i]);
-     print(myinfo);
-    setState(() {});
-  }}
+setlist(var res) async{
+      drug_list = res.data.split("&");
+
+}
      show_description() async {
       myinfo1=" ";
       var result = await http_get("showdescription", {
@@ -84,9 +93,11 @@ int j=0;
   }
 
    void initState() {
-     drug_list=[];
-     
-     show_drugs();
+    
+     print(widget.categories);
+      show_drugs();
+      //drug_list=[];
+      des="";
     //show_description();
     super.initState();
   }
@@ -135,7 +146,7 @@ AnimationController? animationController;
             onTap: () async {
              des=drug_list[index];
                 await show_description();
-                      await show_price() ;
+                      await show_price();
                       await show_type();
               // This Will Call When User Click On ListView Item
               showDialogFunc(context, Image.asset("assets/images/drugg.png"),myinfo1,index,price,type);

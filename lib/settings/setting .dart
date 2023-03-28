@@ -4,10 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter/src/widgets/framework.dart';
 // import 'package:gp1_med_aid/notification.dart';
- import 'package:gp1_med_aid/settings/privacy.dart';
- import 'package:gp1_med_aid/settings/profilee.dart';
- import 'package:gp1_med_aid/settings/change_password.dart';
- import '../main.dart';
+import 'package:gp1_med_aid/settings/privacy.dart';
+import 'package:gp1_med_aid/settings/profilee.dart';
+import 'package:gp1_med_aid/settings/change_password.dart';
+import '../main.dart';
+import 'package:gp1_med_aid/settings/notoficationse.dart';
+
 // import 'package:gp1_med_aid/reset_pass.dart';
 // import 'package:gp1_med_aid/information.dart';
 
@@ -202,12 +204,12 @@ void callpage(int i, BuildContext context,int k) {
                 )));
    }
  
-  // if (i == 4) {
-  //   Navigator.push(
-  //       context,
-  //       MaterialPageRoute(
-  //           builder: (_) => notification_page(
-  //                 firstlist: [id],
-  //               )));
-  // }
+  if (i == 4) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => notification_page(
+                  firstlist: [],
+                )));
+  }
 }

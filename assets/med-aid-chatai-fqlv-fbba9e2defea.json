@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "med-aid-chatai-fqlv",
+  "private_key_id": "fbba9e2defea3ffd8596a1e7e4c8542785bd3b16",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCr3A1v/s7uwem3\nTFT9yM7/qQ2n6apGsjlZWdF5c5uUk9vGU5D/eQhdD7RgK1WZ86mKIMjuOS1NVz8J\n/hMtWgn54w991ExORBAFwXhGsI1+xiUC6WSIDTwQYHDz1EMB8V8GGhPoJ0Z8DH3w\ns6Wg1SvQzc6hbQvRrqQxkes8fWT0EQvON0DFX0S5zBpEVDLXWdORVoPf1l4no7yq\nZ3w5KGExS57BlWXKjnVmKauQC4YRjNsbMsLJ7A9Z/Dm2Q/8KWugewaJSteV4ZIbp\nu2D1il/MaoqAI7NEoS07CFkhL8+fPf1z1DGYqVNkjmEo8ChWlNBmCHsqR8aJ7UI5\nF8cWc0J3AgMBAAECggEAM4H+XQSnjJN9srwj9PQMZj+Kojq8F/gujAMJbzcg+ATg\np65AFPF3ejzMuM4EF+IZfBabYhqs4zM054/Iu5zyxHwzFmlcfVCU5MS5gaZEoixM\nx3Sf9s7Qo6/j6pBBjQGEk1WZhcjPrTopPMz65Rs+yJQGTAdctXl8KIctU7HZYfSD\nz4k5vFr3rb7UIUYzjTUG4GjUWCUbn2V1bsm0TaWTXYUXxxH7oTCsOxdiQ3EnLWVw\nz+nuRUBJxbZQzbkMlS0CTLtnqFjkkFugZvaLVma21JnoevK5JKx6eMA4JK5xLENe\n3PDqcXczkPXV/jyz97jHwG4h7aGZAIqPdyMFkdUGsQKBgQDjAPfB5XuWrAWK2oRY\nkdLKoDWmqk8CLLqxhx9xhiMpkdvs5SBc6xr628j903S1TivKf8pyRJoJriHF0d9J\n3/EIONv29SCnh4SHAxjXJZEkZpZW6vauZjj/6v67kjL49G/XSD8V47MlrQKIGvVK\n8QJ+/8XMUjrFNMNMDsZOoscTXQKBgQDBz94EGzvc3DC7JtewGoKTkkaf8J2mNhFA\n4khXIo+XdJOtArneDmSg1d8cK4lAtkkiDdSDuepeODHY5lMBJZi5HUQ1NXxCHxAB\nHk0CimAFyaeCXvEQjfG91fwZ78PpN6l8G5SYTNs2V8kQ3LsnyQgsARJMeMHs169e\nzPD9JU8D4wKBgEk5QrIU6CzOCGul2RMI1sntq+C7BwlYjFA/mfDwp9784cgkkK/o\nVqecxdS6pObm9FE5r3/0iQueU96PuEsIJaPVU37xyzq/CAzU/upHf+4R+WTIHhJb\nfv9uOgUfP7n2fy0ebNsOu/bnO+3TZFRsMbXto0wpKjP6tRSPn4A2GakxAoGAVd1t\nBC64n8nhwRidWET2csDMj1F/1sJ/dFqMKCaErVoVjwH1LL79sA/wz78uCMB5uB+e\ndlmozuNgmjK4tXpdpi2kKVqv2W9/nK86+RQrJIVJtEWx0V7BqhQio68JAcsKSJTD\niZILUJEl4FWaiS7UcwJqg/zAFdkctghgABdGYXcCgYBj22CG68rBfoA9zCm0Esd0\nd5b1Z1kvx7p30qPTlnCnzIcW5guxOG0r6UG3MLxUgu0VvB3H6NuGZodGPmetSks9\nz5FxnaO3e+/oNMC3dOD/ehkM5G734lt+G/4wN9PHHraGhXX/qZZDHuB3NbFvrQi1\nepkCmef42S8X2HEDxBtNlg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "chat-medaid@med-aid-chatai-fqlv.iam.gserviceaccount.com",
+  "client_id": "105523608820352385330",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chat-medaid%40med-aid-chatai-fqlv.iam.gserviceaccount.com"
+}

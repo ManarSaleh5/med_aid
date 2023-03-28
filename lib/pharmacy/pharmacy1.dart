@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gp1_med_aid/settings/setting%20.dart';
-import 'package:gp1_med_aid/chat/chatai.dart';
+//import 'package:gp1_med_aid/chat/chatai.dart';
 import'package:gp1_med_aid/pharmacy/pages.dart';
+import 'package:gp1_med_aid/pharmacy/online.dart';
 import '../http.dart';
 
 class ListViewPage extends StatefulWidget {
   @override
   String name=" ";
-
- ListViewPage({Key? key, required this.name}) : super(key: key);
+ String id=" ";
+ ListViewPage({Key? key, required this.name,required this.id}) : super(key: key);
   _ListViewPageState createState() => _ListViewPageState();
 
 }
@@ -17,7 +18,7 @@ class ListViewPage extends StatefulWidget {
     "vitamins",
     "children",
     "blood_pressure",
-    "Gluten_free_foods",
+    "Gluten_free_food",
     "sanitary",
     "analgesics",
     "skin_care",
@@ -97,18 +98,40 @@ show_pharmciesid();
   @override
   Widget build(BuildContext context) {
     print(widget.name);
+     print(widget.id);
     // MediaQuery to get Device Width
     double width = MediaQuery.of(context).size.width * 0.6;
      Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+  
         // App Bar
         title: Text(
           "Pharmacy categories ",
           style: TextStyle(color: Color.fromARGB(255, 23, 51, 26)),
         ),
+ 
         elevation: 0,
+        
         backgroundColor: Color(0xFF91c4aa),
+           actions: [
+              IconButton(
+                      icon: Icon(Icons.shopping_bag_outlined , size: 37,color:Color.fromARGB(255, 42, 94, 68),),
+                   onPressed: (){  
+Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => online_shop(
+                  name :
+                     widget.name,
+                     id:id2,
+                     uid:widget.id,
+                )));
+    },
+      
+    ),
+        ],
+        
       ),
       // Main List View With Builder
       body: ListView.builder(
@@ -176,15 +199,9 @@ show_pharmciesid();
                       context,
                       MaterialPageRoute(
                           builder: (_) => Page_n(
-                             name :
-
-                                  
-                                  widget.name,
-
+                             name :widget.name,
                                   categories: titleList[index],
                                   id:id2,
-                              
-                                 
                               )));
  
     },
